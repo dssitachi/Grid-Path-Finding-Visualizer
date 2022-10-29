@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Node from "./Node/Node";
 import './PathFindingVisualizer.css'
 import { dijkstra, getNodesInShortestPathOrder } from '../../algorithms/djiktras'
+import bfs from "../../algorithms/bfs";
 
 const START_NODE_ROW = 10
 const START_NODE_COL = 15
@@ -40,13 +41,24 @@ export default function PathFindingVisualizer() {
         const finishNode = grid[FINISH_NODE_ROW][FINITSH_NODE_COL]
         const visitedNodesInOrder = dijkstra(grid, startNode, finishNode)
         const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode)
-        animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder)
+        animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder)
+    }
+
+    const visualizeBfs = () => {
+        const startNode = grid[START_NODE_ROW][START_NODE_COL]
+        const finishNode = grid[FINISH_NODE_ROW][FINITSH_NODE_COL]
+        const visitedNodesInOrder = bfs(grid, startNode, finishNode)
+        const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode)
+        animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder)
     }
 
     return (
         <>
             <button onClick={() => visualizeDijstra()}>
                 Visualize Dijkstra's Algorithm
+            </button>
+            <button onClick={() => visualizeBfs()}>
+                Visualize BFS Algorithm
             </button>
             <div className="grid">
                 { grid.map((row, rowIndex) => {
@@ -98,7 +110,7 @@ function createNode(row, col) {
     }
 }
 
-function animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+function animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder) {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
