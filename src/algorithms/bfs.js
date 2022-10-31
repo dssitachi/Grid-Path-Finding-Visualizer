@@ -7,7 +7,7 @@ export default function bfs(grid, startNode, finishNode = {row: 8, col: 8}) {
     while (visitedNodes.length) {
         const currentNode = visitedNodes.shift();        
         visitedNodesInOrder.push(currentNode)
-        if (currentNode.row === finishNode.row && currentNode.col === finishNode.col) return visitedNodesInOrder;
+        if (currentNode.row === finishNode.row && currentNode.col === finishNode.col) break;
         
         updateUnvisitedNeighbors(currentNode, visitedNodes, grid)
     }

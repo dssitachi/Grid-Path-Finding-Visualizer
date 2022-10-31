@@ -37,6 +37,20 @@ export default function PathFindingVisualizer() {
         setMouseIsPressed(false)
     }
 
+    const clearBoard = () => {
+        const nodes = document.querySelectorAll('.node')
+        for(let node of nodes) {
+            console.log(node.classList)
+            node.classList.remove('node-visited')
+            node.classList.remove('node-shortest-path')
+        }
+        setGrid(getInitialGrid())
+    }
+
+    const handleClearWalls = () => {
+        setGrid(clearWalls(grid))
+    }
+
     const visualizeDijstra = () => {
         const startNode = grid[START_NODE_ROW][START_NODE_COL]
         const finishNode = grid[FINISH_NODE_ROW][FINITSH_NODE_COL]
@@ -57,7 +71,9 @@ export default function PathFindingVisualizer() {
         <>
             <Navbar 
                 bfs={visualizeBfs} 
-                dijkstra={visualizeDijstra} 
+                dijkstra={visualizeDijstra}
+                clearBoard={clearBoard}
+                clearWalls={handleClearWalls}
             />
             <div className="grid">
                 { grid.map((row, rowIndex) => {
@@ -96,6 +112,20 @@ function getInitialGrid() {
     return grid;
 }
 
+function clearWalls(grid) {
+    const newGrid = []
+    for(let row = 0; row < GRID_ROWS; row++) {
+        const currRow = []
+        for(let col = 0; col < GRID_COLS; col++) {
+            const node = grid[row][col]
+            node.isWall = false; 
+            currRow.push(node)
+        }
+        newGrid.push(currRow)
+    }
+    return newGrid;
+}
+
 function createNode(row, col) {
     return {
         row,
@@ -119,8 +149,7 @@ function animateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder) {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        document.getElementById(`node-${node.row}-${node.col}`).className =
-          'node node-visited';
+        document.getElementById(`node-${node.row}-${node.col}`).classList.add('node-visited')
       }, 10 * i);
     }
 }
@@ -129,8 +158,7 @@ function animateShortestPath(nodesInShortestPathOrder) {
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
-        document.getElementById(`node-${node.row}-${node.col}`).className =
-          'node node-shortest-path';
+        document.getElementById(`node-${node.row}-${node.col}`).classList.add('node-shortest-path')
       }, 50 * i);
     }
 }

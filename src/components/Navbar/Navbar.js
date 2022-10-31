@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Dropdown from '../Dropdown/Dropdown'
 import './Navbar.css'
 
-export default function Navbar({bfs, dijkstra}) {
+export default function Navbar({bfs, dijkstra, clearBoard, clearWalls}) {
 
     const [selectedAlgo, setSelectedAlgo] = useState('')
 
@@ -17,10 +17,10 @@ export default function Navbar({bfs, dijkstra}) {
                 <span className="logoName">Path Visualizer</span>
                 <div className="action">
                     <Dropdown name="Algorithms" onClick={setSelectedAlgo} bfs={bfs} dijkstra={dijkstra}/>
-                    <Dropdown name="Mazes and Patterns"/>
                     <button className="myButton" onClick={handleClick}>Visualize {selectedAlgo}</button>
-                    <div>Clear Board</div>
-                    <div>Clear Walls</div>
+                    <button className="myButton" onClick={clearBoard}>Clear Board</button>
+                    <button className="myButton" onClick={clearWalls}>Clear Walls</button>
+                    
                 </div>
             </nav>
         </header>
