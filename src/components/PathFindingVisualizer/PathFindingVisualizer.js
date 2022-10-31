@@ -3,6 +3,7 @@ import Node from "./Node/Node";
 import './PathFindingVisualizer.css'
 import { dijkstra, getNodesInShortestPathOrder } from '../../algorithms/djiktras'
 import bfs from "../../algorithms/bfs";
+import Navbar from "../Navbar/Navbar";
 
 const START_NODE_ROW = 10
 const START_NODE_COL = 15
@@ -54,12 +55,10 @@ export default function PathFindingVisualizer() {
 
     return (
         <>
-            <button onClick={() => visualizeDijstra()}>
-                Visualize Dijkstra's Algorithm
-            </button>
-            <button onClick={() => visualizeBfs()}>
-                Visualize BFS Algorithm
-            </button>
+            <Navbar 
+                bfs={visualizeBfs} 
+                dijkstra={visualizeDijstra} 
+            />
             <div className="grid">
                 { grid.map((row, rowIndex) => {
                     return <div className="rowContainer" key={rowIndex}> 

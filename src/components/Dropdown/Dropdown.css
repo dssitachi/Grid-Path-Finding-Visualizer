@@ -1,0 +1,33 @@
+.menu-trigger {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+   background-color: #192a56;
+   margin-top: 1.5em;
+}
+
+.dropdownItem {
+    list-style-type: none;
+    font-size: 0.8em;
+    padding: 0.75em;
+}
+
+.dropdownItem:hover {
+    background-color: #1dd1a1;
+    cursor: pointer;
+}
+
+.open {
+    display: block;
+    position: fixed;
+    z-index: 2;
+}
+
+.close {
+    display: none;
+}
+
+.custom-icon {
+    position: fixed;
+}

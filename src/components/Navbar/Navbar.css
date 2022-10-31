@@ -1,0 +1,32 @@
+.navbar {
+    background-color: #192a56;
+    color: white;
+    display: flex;
+    padding: 1em;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+}
+
+.action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4em;
+}
+
+.logoName {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.myButton {
+    background-color: #1dd1a1;
+    border: none;
+    border-radius: 1em;
+    font-size: 1em;
+    color: white;
+    padding: 0.25em 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+

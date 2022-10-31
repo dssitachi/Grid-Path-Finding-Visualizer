@@ -1,8 +1,9 @@
 .grid {
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 .rowContainer {
     font-size: 0;
     margin: 0 auto;
+    width: fit-content;
 }
